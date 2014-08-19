@@ -3,8 +3,8 @@ import java.util.*;
 public class KeyWordInContext {
 	Data title;
 	Data ignoreWords;
-	public static String pathToIgnoredWordsFile = "C:\\Users\\CS\\Documents\\testFile02.txt";
-	public static String pathToTitleFile = "C:\\Users\\CS\\Documents\\testFile01.txt";
+	public static String pathToIgnoredWordsFile = System.getProperty("user.dir")+"\\_ignored-words.dat";//"C:\\Users\\CS\\Documents\\testFile02.txt";
+	public static String pathToTitleFile = System.getProperty("user.dir")+"\\_titles.dat"; //"C:\\Users\\CS\\Documents\\testFile01.txt";
 	
 	boolean ignoreWordsLoadSuccessful = false;
 	boolean titleLoadSuccessful = false;
@@ -73,16 +73,20 @@ public class KeyWordInContext {
 
 		System.out.println("\n");
 	}
-		public void printProcessed(){
-			Processor abc = new Processor();
-			ArrayList<String> lalala = abc.getProcessed(titleArray,ignoreWordsArray);
-			
-			for(int i = 0; i < abc.getPostProcessedTitleSize(); i++){
-				System.out.print(i+1 + ". ");
-				System.out.println(lalala.get(i));
-			}
-
-			System.out.println("\n");
-		}
 	
+	public void printProcessed(){
+		Processor abc = new Processor();
+		ArrayList<String> lalala = abc.getProcessed(titleArray,ignoreWordsArray);
+		
+		for(int i = 0; i < abc.getPostProcessedTitleSize(); i++){
+			System.out.print(i+1 + ". ");
+			System.out.println(lalala.get(i));
+		}
+
+		System.out.println("\n");
+	}
+	
+	public static void main(String[] args) {
+		ConsolePrint.main(args);
+	}
 }

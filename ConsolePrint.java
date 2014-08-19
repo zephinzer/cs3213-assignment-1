@@ -5,18 +5,16 @@ public class ConsolePrint{
 	static Scanner userCommand = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		
 		run();
-	
 	}
 	
 	private static void run(){
 		initialize();
 		runProgram();
-	
 	}
+	
 	private static void initialize(){
-		System.out.println("Hello user!\n"
+		System.out.println("Hello " + System.getProperty("user.name") + "!\n"
 				+ "Select one of the option by typing the index:\n"
 				+ "1. Output the list of ignored words\n"
 				+ "2. Output the list of raw titles\n"
