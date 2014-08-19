@@ -3,8 +3,8 @@ import java.util.*;
 public class KeyWordInContext {
 	Data title;
 	Data ignoreWords;
-	public static String pathToIgnoredWordsFile = "D:\\testFile02.txt";
-	public static String pathToTitleFile = "D:\\testFile01.txt";
+	public static String pathToIgnoredWordsFile = "C:\\Users\\CS\\Documents\\testFile02.txt";
+	public static String pathToTitleFile = "C:\\Users\\CS\\Documents\\testFile01.txt";
 	
 	public KeyWordInContext() {
 		System.out.println("BEGIN\n");
@@ -57,6 +57,15 @@ public class KeyWordInContext {
 			for(Integer i = 0; i < tempLength; ++i) {
 				System.out.println(titleArray.get(i) + ", ");
 			}
+		}
+		
+		System.out.println("\nHere comes the list!");
+		Processor abc = new Processor();
+		ArrayList<String> lalala = abc.getProcessed(titleArray,ignoreWordsArray);
+		
+		for(int i = 0; i < abc.getPostProcessedTitleSize(); i++){
+			System.out.print(i+1 + ". ");
+			System.out.println(lalala.get(i));
 		}
 		
 		System.out.println("\nEND");
