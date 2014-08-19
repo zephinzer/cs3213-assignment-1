@@ -34,6 +34,15 @@ public class Processor{
 		return arr[0].trim();
 	}
 	
+	private String setFirstWordToUpperCase(String title){
+		String [] arr = title.split(" ", 2);
+		if(arr.length >1){
+		return (arr[0].toUpperCase() +" " + arr[1].toLowerCase()).trim();
+		}
+		else
+			return title.toUpperCase();
+	}
+	
 	private ArrayList<String> listOfVariant(String sentence){
 		String arr[] = sentence.trim().split(" ");
 		ArrayList<String> list = new ArrayList<String>();
@@ -50,7 +59,7 @@ public class Processor{
 	private void addToProcessedList(ArrayList<String> list, ArrayList<String> ignoreList){
 		for (int i = 0; i < list.size(); i ++){
 			if(!isWordToIgnore(list.get(i), ignoreList)){
-				PostProcessedTitle.add(list.get(i));
+				PostProcessedTitle.add(setFirstWordToUpperCase(list.get(i)));
 			}
 		}
 	}
