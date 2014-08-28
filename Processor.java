@@ -17,7 +17,7 @@ public class Processor{
 	
 	public ArrayList<String> getProcessedTitle(ArrayList<String> title, ArrayList<String> ignoreList){
 		for(int i = 0; i < title.size(); i++ ){
-			List = listOfVariant(title.get(i));
+			List = listOfVariant(title.get(i), ignoreList);
 			addToProcessedList(List, ignoreList);
 		}
 		sortList();
@@ -34,21 +34,40 @@ public class Processor{
 		return arr[0].trim();
 	}
 	
-	private String setFirstWordToUpperCase(String title){
-		String [] arr = title.split(" ", 2);
-		if(arr.length >1){
-		return (arr[0].toUpperCase() +" " + arr[1].toLowerCase()).trim();
-		}
-		else
-			return title.toUpperCase();
+	private String setFirstLetterToUpperCase(String title){
+		String otherLetter = title.substring(1);
+		String firstLetter = title.substring(0,1);
+		return firstLetter.toUpperCase() + otherLetter.toLowerCase();
+
 	}
 	
-	private ArrayList<String> listOfVariant(String sentence){
+	private String capitaliseWord(String sentence, ArrayList<String> ignoreList){
+		String arr[] = sentence.trim().split(" ");
+		String endTitle= "";
+		String word;
+		for(int i = 0; i < arr.length; i++){
+			if(!isWordToIgnore(arr[i], ignoreList)){
+				word = setFirstLetterToUpperCase(arr[i]);
+			}else{
+				word = arr[i].toLowerCase();
+			}
+			endTitle = endTitle + " " + word;
+		}
+		
+		return endTitle.trim();
+	}
+	
+	private ArrayList<String> listOfVariant(String sentence, ArrayList<String> ignoreList){
+		
+		sentence = capitaliseWord(sentence, ignoreList);
+		
 		String arr[] = sentence.trim().split(" ");
 		ArrayList<String> list = new ArrayList<String>();
+		
 		list.add(sentence);
 		String newTitle = sentence;
 		for(int i = 1; i < arr.length; i++){
+			
 			newTitle = removeAndAppendFirstWord(newTitle);
 			list.add(newTitle);
 		}
@@ -59,7 +78,7 @@ public class Processor{
 	private void addToProcessedList(ArrayList<String> list, ArrayList<String> ignoreList){
 		for (int i = 0; i < list.size(); i ++){
 			if(!isWordToIgnore(list.get(i), ignoreList)){
-				PostProcessedTitle.add(setFirstWordToUpperCase(list.get(i)));
+				PostProcessedTitle.add(list.get(i));
 			}
 		}
 	}
