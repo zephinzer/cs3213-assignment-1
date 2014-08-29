@@ -1,3 +1,7 @@
+/*
+ * Initialise system and database of ignore words and titles. 
+ */
+
 import java.util.*;
 
 public class KeyWordInContext {
@@ -8,16 +12,17 @@ public class KeyWordInContext {
 	
 	public static String pathToIgnoredWordsFile = System.getProperty("user.dir")+"\\_ignored-words.dat";//"C:\\Users\\CS\\Documents\\testFile02.txt";
 	public static String pathToTitleFile = System.getProperty("user.dir")+"\\_titles.dat"; //"C:\\Users\\CS\\Documents\\testFile01.txt";
-	public static final String ERROR_FAIL_TO_LOAD_IGNORED_WORDS = "Something went wrong while loading the ignored words. Check if the file exists at " + pathToIgnoredWordsFile;
-	public static final String ERROR_FAIL_TO_LOAD_TITLE = "Something went wrong while loading the title words. Check if the file exists at " + pathToTitleFile;
-	public static final String ERROR_FAIL_TO_LOAD_PROCESS_DATA = "Something went wrong while processing the data. Our bad. That shouldn\'t have happened.";
-	public static final String ERROR_INVALID_ENTRY = "That was not a valid entry. Please try again!";
+	private static final String ERROR_FAIL_TO_LOAD_IGNORED_WORDS = "Something went wrong while loading the ignored words. Check if the file exists at " + pathToIgnoredWordsFile;
+	private static final String ERROR_FAIL_TO_LOAD_TITLE = "Something went wrong while loading the title words. Check if the file exists at " + pathToTitleFile;
+	private static final String ERROR_FAIL_TO_LOAD_PROCESS_DATA = "Something went wrong while processing the data. Our bad. That shouldn\'t have happened.";
+	private static final String ERROR_INVALID_ENTRY = "That was not a valid entry. Please try again!";
+	private static final String MESSAGE_EXITING_PROGRAM = "Exiting program now";
+	
 	
 	boolean ignoreWordsLoadSuccessful = false;
 	boolean titleLoadSuccessful = false;
 
 	public KeyWordInContext() {
-		//System.out.println("BEGIN\n");
 		
 		// initialization
 		IStorage iStorageIgnoredWords = new FileStorage();
@@ -49,8 +54,6 @@ public class KeyWordInContext {
 			this.titleLoadSuccessful = false;
 		}
 		
-		
-	//	System.out.println("\nEND");
 	}
 	
 	public static void main(String[] args) {
@@ -94,7 +97,7 @@ public class KeyWordInContext {
 				main(args);
 				break;
 			case "4":
-				System.out.println("Exit now :)");
+				System.out.println(MESSAGE_EXITING_PROGRAM);
 				System.exit(0);
 				break;
 			default:
